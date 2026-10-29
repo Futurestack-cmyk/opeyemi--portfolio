@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Oladipo Opeyemi | Creative Technologist, Developer &amp; AI Automation</title>
+  
+  <!-- SEO & Social Sharing Metadata -->
+  <meta name="description" content="Portfolio of Oladipo Opeyemi — Creative Technologist, Full-Stack Developer &amp; AI Automation Specialist. Turning ideas into digital experiences that work." />
+  <meta name="keywords" content="Oladipo Opeyemi, Creative Technologist, Full-Stack Developer, AI Automation, n8n, Web Development, Communications Strategy" />
+  <meta name="author" content="Oladipo Opeyemi" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Oladipo Opeyemi | Creative Technologist, Developer &amp; AI Automation" />
+  <meta property="og:description" content="Turning ideas into digital experiences that work. Full-stack development, n8n workflow automation, and strategic communications." />
+  <meta property="og:url" content="https://www.linkedin.com/in/opeyemi-oladipo-ba6858333" />
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & RESET
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-canvas: #090609;
+      --bg-card: rgba(18, 12, 17, 0.62);
+      --bg-card-hover: rgba(28, 18, 26, 0.78);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-active: rgba(16, 185, 129, 0.45);
+      
+      --accent-emerald: #10b981;
+      --accent-emerald-light: #34d399;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.22);
+      --accent-amber: #f59e0b;
+      --accent-orange: #ff5500;
+      
+      --text-white: #ffffff;
+      --text-light: #f8fafc;
+      --text-muted: rgba(248, 250, 252, 0.72);
+      --text-dim: rgba(248, 250, 252, 0.48);
+
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Top preloader progress bar */
+    .load-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-emerald), var(--accent-amber), var(--accent-orange));
+      z-index: 9999;
+      pointer-events: none;
+      transition: width 0.12s ease-out, opacity 0.5s ease;
+    }
+
+    .load-bar.ready {
+      opacity: 0;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(9, 6, 9, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.3s ease, padding 0.3s ease;
+    }
+
+    .brand-wrap {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .brand-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-dim);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-white);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent-emerald);
+      border-radius: var(--radius-full);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-emerald);
+      color: #042f1a;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-emerald-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-emerald-glow);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-light);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-icon-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.18);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-white);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* ==========================================================================
+       MAIN LAYOUT & TYPOGRAPHY
+       ========================================================================== */
+    main {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+
+    .section-container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .serif-italic {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-white);
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent-emerald);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-heading {
+      font-size: clamp(30px, 3.8vw, 50px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.2px;
+      color: var(--text-white);
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: clamp(15px, 1.5vw, 17px);
+      line-height: 1.55;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+
+    /* ==========================================================================
+       HERO SECTION WITH VISIBLE ANIMATED PORTRAIT VIDEO
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 120px;
+      padding-bottom: 40px;
+    }
+
+    .hero-video-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 55vw;
+      height: 100%;
+      min-width: 520px;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .hero-video-element {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 16%;
+      display: block;
+      filter: contrast(108%) saturate(108%) brightness(1.02);
+      transform: translateZ(0);
+    }
+
+    .hero-video-gradient-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, #090609 0%, rgba(9, 6, 9, 0.85) 30%, rgba(9, 6, 9, 0.25) 75%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-video-gradient-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(180deg, transparent 0%, rgba(9, 6, 9, 0.8) 55%, #090609 100%);
+      pointer-events: none;
+    }
+
+    .hero-video-gradient-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      background: linear-gradient(180deg, rgba(9, 6, 9, 0.85) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-content-container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .hero-top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-emerald);
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+      width: fit-content;
+    }
+
+    .hero-main-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-top: 6px;
+      margin-bottom: 24px;
+    }
+
+    .hero-left {
+      max-width: 54%;
+      position: relative;
+      z-index: 12;
+    }
+
+    .hero-intro-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-amber);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 5.8vw, 82px);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -2px;
+      color: var(--text-white);
+      margin-bottom: 18px;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Concise 2-3 line lead */
+    .hero-lead-text {
+      font-size: clamp(16px, 1.6vw, 19px);
+      line-height: 1.55;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 28px;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Simplified, punchy information card below the chin line */
+    .hero-right-card {
+      max-width: 360px;
+      background: rgba(18, 12, 17, 0.58);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 26px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      position: relative;
+      z-index: 12;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .hero-right-card:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .hero-right-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-white);
+    }
+
+    .hero-right-card p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 14px;
+    }
+
+    .hero-stat-item .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-emerald);
+    }
+
+    .hero-stat-item .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Four Pillars Strip */
+    .pillars-grid {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 20px 28px;
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+    }
+
+    .pillar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pillar-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-emerald);
+    }
+
+    .pillar-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .pillar-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       FEATURED WORK — VISUAL-FIRST EDITORIAL GRID
+       ========================================================================== */
+    .work-section {
+      padding: 90px 0 70px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-active);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 24px var(--accent-emerald-glow);
+    }
+
+    .project-preview {
+      width: 100%;
+      height: 290px;
+      position: relative;
+      overflow: hidden;
+      background-color: #120911;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .project-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover .project-preview img {
+      transform: scale(1.03);
+    }
+
+    .project-category-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      padding: 5px 12px;
+      background: rgba(9, 6, 9, 0.88);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-emerald-light);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      z-index: 2;
+    }
+
+    .project-content {
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .project-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-white);
+      margin-bottom: 8px;
+    }
+
+    .project-title a {
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s ease;
+    }
+
+    .project-title a:hover {
+      color: var(--accent-emerald);
+    }
+
+    /* Short 2-sentence description */
+    .project-description {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      padding: 3px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+    }
+
+    .project-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .project-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-emerald);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: gap 0.2s ease, color 0.2s ease;
+    }
+
+    .project-link-btn:hover {
+      gap: 12px;
+      color: var(--accent-emerald-light);
+    }
+
+    /* ==========================================================================
+       SERVICES — SCANNABLE CARDS (NO BULLET LISTS)
+       ========================================================================== */
+    .services-section {
+      padding: 80px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .services-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-active);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .service-card.highlight {
+      border-color: rgba(16, 185, 129, 0.35);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, var(--bg-card) 60%);
+    }
+
+    .service-badge-focus {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .service-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-emerald);
+      margin-bottom: 20px;
+    }
+
+    .service-card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 10px;
+      letter-spacing: -0.4px;
+    }
+
+    .service-benefit-lead {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .service-card-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 14px;
+    }
+
+    .service-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-white);
+      text-decoration: none;
+      transition: color 0.2s ease, gap 0.2s ease;
+    }
+
+    .service-cta-link:hover {
+      color: var(--accent-emerald);
+      gap: 9px;
+    }
+
+    /* ==========================================================================
+       ABOUT ME — PERSONAL & VISUAL WITH PORTRAIT
+       ========================================================================== */
+    .about-section {
+      padding: 90px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .about-card-wrap {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 50px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .about-grid-layout {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    /* Personal Portrait Showcase */
+    .about-portrait-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 0.85;
+      background: #150912;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    }
+
+    .about-portrait-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .about-portrait-wrap:hover img {
+      transform: scale(1.02);
+    }
+
+    .about-portrait-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      padding: 6px 14px;
+      background: rgba(9, 6, 9, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-emerald-light);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .about-lead-quote {
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+      color: var(--text-white);
+      margin-bottom: 18px;
+    }
+
+    .about-text-body p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .about-chips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .about-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .about-chip-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-emerald);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SKILLS & TOOLS — COMPACT PILLARS & BADGES
+       ========================================================================== */
+    .skills-section {
+      padding: 80px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .skills-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .skill-pillar-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .skill-pillar-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-badge {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-light);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill-badge:hover {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: var(--accent-emerald-light);
+    }
+
+    /* ==========================================================================
+       HOW I WORK — CLEAN 4-STEP PROCESS
+       ========================================================================== */
+    .process-section {
+      padding: 80px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .process-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .process-step-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .process-step-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-active);
+    }
+
+    .step-number {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent-emerald);
+      margin-bottom: 12px;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       CONTACT & INQUIRY SECTION
+       ========================================================================== */
+    .contact-section {
+      padding: 90px 0 120px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .contact-card-wrap {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 50px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .contact-info-col h3 {
+      font-size: clamp(24px, 2.6vw, 34px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text-white);
+      margin-bottom: 14px;
+      letter-spacing: -0.6px;
+    }
+
+    .contact-info-col p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-method-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .method-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .method-details .method-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .method-details .method-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      transition: color 0.2s ease;
+    }
+
+    .contact-method-item:hover .method-val {
+      color: var(--accent-emerald);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      color: var(--text-white);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group select option {
+      background-color: #0f0a0e;
+      color: #ffffff;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent-emerald);
+    }
+
+    .form-status-alert {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      display: none;
+    }
+
+    .form-status-alert.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #a7f3d0;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      background: rgba(9, 6, 9, 0.96);
+      border-top: 1px solid var(--border-subtle);
+      padding: 50px 5% 36px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .footer-brand h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 300px;
+      line-height: 1.5;
+    }
+
+    .footer-links-group {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h5 {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent-emerald);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 24px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1080px) {
+      .hero-video-wrapper {
+        width: 100%;
+        height: 65vh;
+        min-height: 480px;
+        opacity: 0.92;
+      }
+      .hero-video-gradient-left {
+        width: 100%;
+        background: linear-gradient(180deg, rgba(9, 6, 9, 0.2) 0%, rgba(9, 6, 9, 0.8) 65%, #090609 100%);
+      }
+      .hero-main-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+      }
+      .hero-left, .hero-right-card {
+        max-width: 100%;
+      }
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .about-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .skills-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .process-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 14px 5%;
+      }
+      .nav-links, .header-cta {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(9, 6, 9, 0.98);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 24px 5%;
+        gap: 16px;
+      }
+      .hero-video-wrapper {
+        height: 52vh;
+      }
+      .hero-video-element {
+        object-position: center 12%;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .skills-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .process-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .about-chips-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-card-wrap,
+      .contact-card-wrap {
+        padding: 30px 20px;
+      }
+      .hero-section {
+        padding-top: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sleek Top Loading Indicator -->
+  <div id="load-bar" class="load-bar"></div>
+
+  <!-- Fixed Header Navigation -->
+  <header id="site-header">
+    <a href="#home" class="brand-wrap">
+      <div class="brand-name">
+        <span class="brand-indicator"></span>
+        Oladipo Opeyemi
+      </div>
+      <span class="brand-title">Creative Technologist</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#work">Featured Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="header-cta">
+        <a href="#contact" class="btn btn-primary">
+          Let's Talk
+          <span class="btn-icon-circle">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H3.5M8 2V6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Interactive Content Layer -->
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         HERO SECTION WITH VISIBLE ANIMATED PORTRAIT VIDEO
+         ========================================================================== -->
+    <section class="hero-section" id="home">
+
+      <!-- Full-bleed Animated Video Background on the Right -->
+      <div class="hero-video-wrapper">
+        <video id="hero-video" class="hero-video-element" autoplay loop muted playsinline preload="auto">
+          <source src="./portrait_video.mp4" type="video/mp4" />
+          <source src="./Woman_turns_and_puts_on_856ba427.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-video-gradient-left"></div>
+        <div class="hero-video-gradient-bottom"></div>
+        <div class="hero-video-gradient-top"></div>
+      </div>
+
+      <div class="section-container hero-content-container">
+        <div class="hero-top-badge">
+          <span>●</span> Available for Projects &amp; Workflow Automation
+        </div>
+
+        <div class="hero-main-content">
+          <div class="hero-left">
+            <p class="hero-intro-label">Creative Technologist &amp; Digital Problem Solver</p>
+            <h1 class="hero-title">
+              Turning Ideas Into Digital Experiences <span class="serif-italic">That Work.</span>
+            </h1>
+            <p class="hero-lead-text">
+              I build modern web applications, deploy intelligent n8n automations, and shape strategic communications that help forward-thinking teams work smarter and scale.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#work" class="btn btn-primary">
+                Explore Featured Work
+                <span class="btn-icon-circle">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 8L8 2M8 2H3.5M8 2V6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+              <a href="#contact" class="btn btn-secondary">
+                Let's Discuss a Project
+              </a>
+            </div>
+          </div>
+
+          <!-- Simplified, High-Impact Value Card -->
+          <div class="hero-right-card">
+            <h3>Code, Automation &amp; Strategy</h3>
+            <p>
+              Engineering seamless web products and automated workflows that eliminate operational friction and connect with people.
+            </p>
+            <div class="hero-stats-row">
+              <div class="hero-stat-item">
+                <div class="stat-num">04+</div>
+                <div class="stat-label">Live Projects</div>
+              </div>
+              <div class="hero-stat-item">
+                <div class="stat-num">n8n</div>
+                <div class="stat-label">Automation Focus</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Four Pillars Summary Bar -->
+        <div class="pillars-grid">
+          <div class="pillar-item">
+            <span class="pillar-num">#01</span>
+            <span class="pillar-title">Full-Stack Development</span>
+            <span class="pillar-desc">Responsive web apps, dashboards &amp; platforms.</span>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-num">#02</span>
+            <span class="pillar-title">AI &amp; n8n Automation</span>
+            <span class="pillar-desc">Automated workflows &amp; multi-API routing.</span>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-num">#03</span>
+            <span class="pillar-title">Strategic Communications</span>
+            <span class="pillar-desc">Brand storytelling &amp; content calendars.</span>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-num">#04</span>
+            <span class="pillar-title">Project Coordination</span>
+            <span class="pillar-desc">Milestone tracking &amp; cross-team execution.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FEATURED WORK — VISUAL-FIRST EDITORIAL CARDS
+         ========================================================================== -->
+    <section class="work-section section-container" id="work">
+      <div class="section-eyebrow">
+        <span>●</span> Selected Work
+      </div>
+      <h2 class="section-heading">Featured Projects</h2>
+      <p class="section-desc">
+        Real-world digital platforms and client solutions engineered for performance, reliability, and measurable impact.
+      </p>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: HomeLink -->
+        <article class="project-card">
+          <a href="https://www.homelink.com.ng/" target="_blank" rel="noopener noreferrer" class="project-preview">
+            <span class="project-category-badge">PropTech Platform</span>
+            <img src="./images/project_homelink.png" alt="HomeLink Platform Preview" loading="lazy" />
+          </a>
+          <div class="project-content">
+            <div>
+              <div class="project-title">
+                <a href="https://www.homelink.com.ng/" target="_blank" rel="noopener noreferrer">
+                  HomeLink Platform
+                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                    <path d="M4.5 13.5L13.5 4.5M13.5 4.5H6.5M13.5 4.5V11.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+              <p class="project-description">
+                A verified property discovery platform built to eliminate rental scams and search fatigue in Nigeria with transparent, verified listings.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">Full-Stack Web</span>
+                <span class="tag-pill">Search &amp; Filters</span>
+                <span class="tag-pill">PropTech</span>
+              </div>
+            </div>
+
+            <div class="project-cta-row">
+              <a href="https://www.homelink.com.ng/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                View Project Live ↗
+              </a>
+              <span class="tag-pill" style="font-family: var(--font-mono); font-size: 11px;">homelink.com.ng</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: North Foundry -->
+        <article class="project-card">
+          <a href="https://www.northfoundry.agency/" target="_blank" rel="noopener noreferrer" class="project-preview">
+            <span class="project-category-badge">Agency Platform</span>
+            <img src="./images/project_northfoundry.png" alt="North Foundry Platform Preview" loading="lazy" />
+          </a>
+          <div class="project-content">
+            <div>
+              <div class="project-title">
+                <a href="https://www.northfoundry.agency/" target="_blank" rel="noopener noreferrer">
+                  North Foundry
+                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                    <path d="M4.5 13.5L13.5 4.5M13.5 4.5H6.5M13.5 4.5V11.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+              <p class="project-description">
+                An editorial venture agency platform designed for ambitious founders, combining brand strategy, precision typography, and scalable web architecture.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">Frontend Architecture</span>
+                <span class="tag-pill">Brand Engineering</span>
+                <span class="tag-pill">Conversion UI</span>
+              </div>
+            </div>
+
+            <div class="project-cta-row">
+              <a href="https://www.northfoundry.agency/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                View Project Live ↗
+              </a>
+              <span class="tag-pill" style="font-family: var(--font-mono); font-size: 11px;">northfoundry.agency</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Comprehensive Concierge -->
+        <article class="project-card">
+          <a href="https://www.comprehensiveconcierge.com.ng/" target="_blank" rel="noopener noreferrer" class="project-preview">
+            <span class="project-category-badge">Lifestyle &amp; Travel Concierge</span>
+            <img src="./images/project_concierge.png" alt="Comprehensive Concierge Preview" loading="lazy" />
+          </a>
+          <div class="project-content">
+            <div>
+              <div class="project-title">
+                <a href="https://www.comprehensiveconcierge.com.ng/" target="_blank" rel="noopener noreferrer">
+                  Comprehensive Concierge
+                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                    <path d="M4.5 13.5L13.5 4.5M13.5 4.5H6.5M13.5 4.5V11.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+              <p class="project-description">
+                A bespoke lifestyle concierge web portal with dynamic booking request engines, travel assistance, and verified errand handling across Nigeria.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">Booking Engine</span>
+                <span class="tag-pill">Interactive Forms</span>
+                <span class="tag-pill">Mobile-First</span>
+              </div>
+            </div>
+
+            <div class="project-cta-row">
+              <a href="https://www.comprehensiveconcierge.com.ng/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                View Project Live ↗
+              </a>
+              <span class="tag-pill" style="font-family: var(--font-mono); font-size: 11px;">comprehensiveconcierge.com.ng</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4: Yankees Travels & Logistics -->
+        <article class="project-card">
+          <a href="https://www.yankeestravelsandlogistics.com/" target="_blank" rel="noopener noreferrer" class="project-preview">
+            <span class="project-category-badge">Corporate Mobility Platform</span>
+            <img src="./images/project_yankees.png" alt="Yankees Travels Preview" loading="lazy" />
+          </a>
+          <div class="project-content">
+            <div>
+              <div class="project-title">
+                <a href="https://www.yankeestravelsandlogistics.com/" target="_blank" rel="noopener noreferrer">
+                  Yankees Travels &amp; Logistics
+                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                    <path d="M4.5 13.5L13.5 4.5M13.5 4.5H6.5M13.5 4.5V11.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+              <p class="project-description">
+                A corporate travel and immigration consultancy platform integrating service directories, live advisories, and instant consultation booking.
+              </p>
+              <div class="project-tags">
+                <span class="tag-pill">Corporate Web</span>
+                <span class="tag-pill">Lead Capture</span>
+                <span class="tag-pill">Global Mobility</span>
+              </div>
+            </div>
+
+            <div class="project-cta-row">
+              <a href="https://www.yankeestravelsandlogistics.com/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                View Project Live ↗
+              </a>
+              <span class="tag-pill" style="font-family: var(--font-mono); font-size: 11px;">yankeestravelsandlogistics.com</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SERVICES — SCANNABLE CARDS WITH SIMPLE ICONS
+         ========================================================================== -->
+    <section class="services-section section-container" id="services">
+      <div class="section-eyebrow">
+        <span>●</span> What I Do
+      </div>
+      <h2 class="section-heading">Services &amp; Capabilities</h2>
+      <p class="section-desc">
+        Focused digital expertise designed to help founders and organizations build reliable products, automate workflows, and communicate clearly.
+      </p>
+
+      <div class="services-cards-grid">
+
+        <!-- Service 1: Full-Stack Web Development -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Full-Stack Web Development</h3>
+          <p class="service-benefit-lead">
+            Responsive websites, modern web apps, and dashboards built for speed, clean architecture, and high conversion.
+          </p>
+          <div class="service-card-footer">
+            <a href="#contact" class="service-cta-link">
+              Let's discuss your project ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 2: AI Automation & n8n -->
+        <div class="service-card highlight">
+          <span class="tag-pill service-badge-focus" style="color: var(--accent-emerald-light); border-color: rgba(16, 185, 129, 0.4); font-size: 11px; font-weight: 700;">Core Focus</span>
+          <div class="service-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+              <line x1="6" y1="6" x2="6.01" y2="6"/>
+              <line x1="6" y1="18" x2="6.01" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">AI Automation &amp; n8n</h3>
+          <p class="service-benefit-lead">
+            Automated workflows and API integrations that eliminate repetitive manual tasks and run business processes on autopilot.
+          </p>
+          <div class="service-card-footer">
+            <a href="#contact" class="service-cta-link">
+              Automate your workflows ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 3: AI-Powered Digital Solutions -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">AI-Powered Digital Solutions</h3>
+          <p class="service-benefit-lead">
+            Practical AI integrations and intelligent tools tailored to tangible business workflows without unnecessary complexity.
+          </p>
+          <div class="service-card-footer">
+            <a href="#contact" class="service-cta-link">
+              Explore AI solutions ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 4: Communications & Content Strategy -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Communications &amp; Strategy</h3>
+          <p class="service-benefit-lead">
+            Strategic storytelling, editorial calendars, and brand messaging informed by hands-on experience as a Communications Officer.
+          </p>
+          <div class="service-card-footer">
+            <a href="#contact" class="service-cta-link">
+              Elevate your communication ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 5: Project Management & Coordination -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Project Coordination</h3>
+          <p class="service-benefit-lead">
+            Calm, organized milestone tracking, workflow documentation, and proactive team communication that keeps projects on schedule.
+          </p>
+          <div class="service-card-footer">
+            <a href="#contact" class="service-cta-link">
+              Coordinate your next project ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT ME — PERSONAL & VISUAL WITH PORTRAIT
+         ========================================================================== -->
+    <section class="about-section section-container" id="about">
+      <div class="about-card-wrap">
+        <div class="about-grid-layout">
+          
+          <!-- Visual Portrait Showcase -->
+          <div class="about-portrait-wrap">
+            <img src="./images/portrait_about.png" alt="Oladipo Opeyemi Portrait" loading="lazy" />
+            <div class="about-portrait-badge">
+              <span>●</span> Creative Technologist
+            </div>
+          </div>
+
+          <!-- Concise Narrative -->
+          <div>
+            <div class="section-eyebrow">
+              <span>●</span> Background &amp; Philosophy
+            </div>
+            <h2 class="about-lead-quote">
+              "Technology is only as powerful as the problem it solves and the clarity with which it communicates."
+            </h2>
+            <div class="about-text-body">
+              <p>
+                I am <strong>Oladipo Opeyemi</strong>, a creative technologist and full-stack developer based in Lagos, Nigeria. With a foundation in computer science, years of hands-on web engineering, and professional experience as a <strong>Communications Officer</strong>, I bridge the gap between technical architecture and strategic storytelling.
+              </p>
+              <p>
+                Whether developing responsive platforms like <em>HomeLink</em> or deploying resilient <strong>n8n automated workflows</strong>, I focus on making technology practical, accessible, and genuinely effective for real businesses.
+              </p>
+            </div>
+
+            <div class="about-chips-grid">
+              <div class="about-chip">
+                <span class="about-chip-num">01</span>
+                <span>Computer Science Foundation</span>
+              </div>
+              <div class="about-chip">
+                <span class="about-chip-num">02</span>
+                <span>Communications Officer Experience</span>
+              </div>
+              <div class="about-chip">
+                <span class="about-chip-num">03</span>
+                <span>n8n Workflow Specialist</span>
+              </div>
+              <div class="about-chip">
+                <span class="about-chip-num">04</span>
+                <span>Human-Centered Problem Solver</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SKILLS & TOOLS — COMPACT PILLARS & BADGES
+         ========================================================================== -->
+    <section class="skills-section section-container" id="skills">
+      <div class="section-eyebrow">
+        <span>●</span> Capabilities
+      </div>
+      <h2 class="section-heading">Skills &amp; Technical Stack</h2>
+      <p class="section-desc">
+        A multidisciplinary toolkit honed across full-stack development, workflow automation, and communications.
+      </p>
+
+      <div class="skills-pillars-grid">
+
+        <div class="skill-pillar-card">
+          <div class="skill-pillar-header">
+            <h3>Web Development</h3>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-badge">HTML5 / CSS3</span>
+            <span class="skill-badge">JavaScript (ES6+)</span>
+            <span class="skill-badge">React</span>
+            <span class="skill-badge">Vite</span>
+            <span class="skill-badge">REST APIs</span>
+            <span class="skill-badge">Git / GitHub</span>
+            <span class="skill-badge">Responsive UI</span>
+          </div>
+        </div>
+
+        <div class="skill-pillar-card">
+          <div class="skill-pillar-header">
+            <h3>AI &amp; Automation</h3>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-badge" style="color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.35);">n8n Workflows</span>
+            <span class="skill-badge">Webhooks</span>
+            <span class="skill-badge">API Data Routing</span>
+            <span class="skill-badge">LLM APIs</span>
+            <span class="skill-badge">Process Mapping</span>
+            <span class="skill-badge">Automation Ops</span>
+          </div>
+        </div>
+
+        <div class="skill-pillar-card">
+          <div class="skill-pillar-header">
+            <h3>Communications</h3>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-badge">Brand Storytelling</span>
+            <span class="skill-badge">Editorial Calendars</span>
+            <span class="skill-badge">Copywriting</span>
+            <span class="skill-badge">Media Scripts</span>
+            <span class="skill-badge">Audience Engagement</span>
+            <span class="skill-badge">Technical Writing</span>
+          </div>
+        </div>
+
+        <div class="skill-pillar-card">
+          <div class="skill-pillar-header">
+            <h3>Project Delivery</h3>
+          </div>
+          <div class="skill-tags-wrap">
+            <span class="skill-badge">Milestone Tracking</span>
+            <span class="skill-badge">SOP Documentation</span>
+            <span class="skill-badge">Team Alignment</span>
+            <span class="skill-badge">Stakeholder Updates</span>
+            <span class="skill-badge">Quality Assurance</span>
+            <span class="skill-badge">Agile Delivery</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         HOW I WORK — 4 SIMPLE STEPS
+         ========================================================================== -->
+    <section class="process-section section-container" id="process">
+      <div class="section-eyebrow">
+        <span>●</span> Method
+      </div>
+      <h2 class="section-heading">How I Work</h2>
+      <p class="section-desc">
+        A clear, structured approach that turns complex requirements into resilient digital solutions on time.
+      </p>
+
+      <div class="process-steps-grid">
+        <div class="process-step-card">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Scope &amp; Understand</h3>
+          <p class="step-desc">
+            Clarifying core objectives, user needs, and realistic project milestones before writing a line of code.
+          </p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-number">02</div>
+          <h3 class="step-title">Architect &amp; Map</h3>
+          <p class="step-desc">
+            Structuring clean web architecture and mapping automated n8n workflows to eliminate manual friction.
+          </p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Build &amp; Iterate</h3>
+          <p class="step-desc">
+            Writing clean, accessible code and responsive interfaces with regular check-ins and transparent progress.
+          </p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-number">04</div>
+          <h3 class="step-title">Refine &amp; Deliver</h3>
+          <p class="step-desc">
+            Cross-device testing, workflow documentation, performance tuning, and smooth deployment built to scale.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT & INQUIRY SECTION
+         ========================================================================== -->
+    <section class="contact-section section-container" id="contact">
+      <div class="contact-card-wrap">
+        <div class="contact-grid">
+          
+          <div class="contact-info-col">
+            <div class="section-eyebrow">
+              <span>●</span> Start a Conversation
+            </div>
+            <h3>Let's Build Something Meaningful Together.</h3>
+            <p>
+              Whether you need a new responsive web application, want to automate business workflows using n8n, or need versatile project coordination, I'm here to help.
+            </p>
+
+            <div class="contact-methods">
+              <a href="mailto:oladipoopeyemi32@gmail.com" class="contact-method-item">
+                <div class="method-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">Direct Email</span>
+                  <span class="method-val">oladipoopeyemi32@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/opeyemi-oladipo-ba6858333" target="_blank" rel="noopener noreferrer" class="contact-method-item">
+                <div class="method-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">LinkedIn</span>
+                  <span class="method-val">linkedin.com/in/opeyemi-oladipo</span>
+                </div>
+              </a>
+
+              <div class="contact-method-item">
+                <div class="method-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">Location</span>
+                  <span class="method-val">Lagos, Nigeria (Available Globally)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Streamlined Inquiry Form -->
+          <form class="contact-form" id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Your Name *</label>
+                <input type="text" id="contact-name" placeholder="Kolawole Adeniji" required />
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Your Email *</label>
+                <input type="email" id="contact-email" placeholder="kolawole@example.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service-category">Service Needed *</label>
+              <select id="service-category" required>
+                <option value="Full-Stack Web Development">Full-Stack Web Development</option>
+                <option value="n8n Workflow Automation">AI Automation &amp; n8n Workflows</option>
+                <option value="AI-Powered Digital Solutions">AI-Powered Digital Solutions</option>
+                <option value="Communications & Content Strategy">Communications &amp; Strategy</option>
+                <option value="Project Coordination">Project Coordination</option>
+                <option value="General Inquiry">General Consultation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="project-message">Project Brief *</label>
+              <textarea id="project-message" placeholder="Briefly describe what you'd like to build, automate, or solve..." required></textarea>
+            </div>
+
+            <div id="form-alert" class="form-status-alert"></div>
+
+            <button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 12px 28px;">
+              Send Message
+              <span class="btn-icon-circle">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 8L8 2M8 2H3.5M8 2V6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="section-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h4>Oladipo Opeyemi</h4>
+          <p>Creative Technologist &amp; Digital Problem Solver. Building modern web products and intelligent n8n automations.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h5>Navigation</h5>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#work">Featured Work</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#about">About</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Live Projects</h5>
+            <ul>
+              <li><a href="https://www.homelink.com.ng/" target="_blank" rel="noopener noreferrer">HomeLink ↗</a></li>
+              <li><a href="https://www.northfoundry.agency/" target="_blank" rel="noopener noreferrer">North Foundry ↗</a></li>
+              <li><a href="https://www.comprehensiveconcierge.com.ng/" target="_blank" rel="noopener noreferrer">Comprehensive Concierge ↗</a></li>
+              <li><a href="https://www.yankeestravelsandlogistics.com/" target="_blank" rel="noopener noreferrer">Yankees Travels ↗</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Connect</h5>
+            <ul>
+              <li><a href="mailto:oladipoopeyemi32@gmail.com">Email Me ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/opeyemi-oladipo-ba6858333" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Oladipo Opeyemi. All rights reserved.</p>
+        <p>Built with clean code, n8n automation, and strategic precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS: VIDEO AUTOPLAY, SCROLL SPY & CONTACT
+       ========================================================================== -->
+  <script>
+    (function () {
+      // 1. Hero Video Robust Autoplay Engine
+      const heroVideo = document.getElementById('hero-video');
+      const loadBar = document.getElementById('load-bar');
+
+      if (heroVideo) {
+        heroVideo.muted = true;
+        heroVideo.playsInline = true;
+
+        const attemptPlay = () => {
+          const playPromise = heroVideo.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              if (loadBar) loadBar.classList.add('ready');
+            }).catch(() => {
+              const resume = () => {
+                heroVideo.play();
+                if (loadBar) loadBar.classList.add('ready');
+                window.removeEventListener('click', resume);
+                window.removeEventListener('scroll', resume);
+                window.removeEventListener('touchstart', resume);
+              };
+              window.addEventListener('click', resume, { once: true });
+              window.addEventListener('scroll', resume, { once: true });
+              window.addEventListener('touchstart', resume, { once: true });
+            });
+          }
+        };
+
+        if (heroVideo.readyState >= 2) {
+          attemptPlay();
+        } else {
+          heroVideo.addEventListener('loadeddata', attemptPlay, { once: true });
+        }
+
+        // Performance Optimization: Pause video when scrolled completely out of view
+        const heroSection = document.getElementById('home');
+        if ('IntersectionObserver' in window && heroSection) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                if (heroVideo.paused) heroVideo.play();
+              } else {
+                if (!heroVideo.paused) heroVideo.pause();
+              }
+            });
+          }, { threshold: 0.1 });
+          observer.observe(heroSection);
+        }
+      }
+
+      // 2. Mobile Navigation Drawer Toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('mobile-open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('mobile-open');
+          });
+        });
+      }
+
+      // 3. Scroll-Spy Navigation Highlighter
+      const sections = document.querySelectorAll('section[id], main[id]');
+      const navAnchorLinks = document.querySelectorAll('.nav-links a');
+
+      function highlightActiveNav() {
+        const scrollPosition = window.scrollY + 200;
+
+        sections.forEach(sec => {
+          const top = sec.offsetTop;
+          const height = sec.offsetHeight;
+          const id = sec.getAttribute('id');
+
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            navAnchorLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', highlightActiveNav, { passive: true });
+
+      // 4. Contact Form Submission
+      const contactForm = document.getElementById('contact-form');
+      const formAlert = document.getElementById('form-alert');
+
+      if (contactForm && formAlert) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById('contact-name').value.trim();
+          const email = document.getElementById('contact-email').value.trim();
+          const service = document.getElementById('service-category').value;
+          const message = document.getElementById('project-message').value.trim();
+
+          if (!name || !email || !message) {
+            alert('Please fill out all required fields.');
+            return;
+          }
+
+          const subject = encodeURIComponent(`Project Inquiry: ${service} from ${name}`);
+          const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`);
+          
+          formAlert.className = 'form-status-alert success';
+          formAlert.innerHTML = `✓ Thank you, <strong>${name}</strong>! Opening your mail client to send directly to <strong>oladipoopeyemi32@gmail.com</strong>.`;
+
+          setTimeout(() => {
+            window.location.href = `mailto:oladipoopeyemi32@gmail.com?subject=${subject}&body=${body}`;
+          }, 800);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
